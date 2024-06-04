@@ -1,0 +1,298 @@
+@font-face {
+  font-family: "Stem";
+  src: url(fonts/stem-regular.woff2) format("woff2");
+}
+body {
+  font-family: Stem, sans-serif;
+  margin: 0;
+  background-color: rgb(240, 240, 240);
+}
+
+.show {
+  display: none;
+}
+
+.header {
+  display: flex;
+  height: 44px;
+  justify-content: center;
+  background-color: white;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+.logo a {
+  padding: 0 30px 0 35px;
+  display: flex;
+  align-items: center;
+}
+.logo a:hover .logo-leaf {
+  filter: invert(26%) sepia(99%) saturate(856%) hue-rotate(81deg) brightness(94%) contrast(106%);
+}
+
+.logo-leaf {
+  height: 22px;
+  transition: 0.4s;
+}
+
+.navigation {
+  background-color: rgb(243, 243, 243);
+  width: 164px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+.navigation .nav-icon {
+  height: 16px;
+  padding: 0 7px;
+  display: inline-block;
+}
+.navigation .nav-triangle {
+  height: 16px;
+  padding: 0 10px;
+  transition: 0.2s;
+}
+.navigation .nav-current {
+  display: flex;
+  padding-left: 8px;
+  align-items: center;
+}
+.navigation .nav-current p {
+  font-size: 14px;
+  display: inline-block;
+  margin: 0;
+}
+.navigation:hover {
+  background-color: white;
+}
+.navigation:hover .nav-dropdown {
+  display: block;
+}
+.navigation:hover .nav-triangle {
+  rotate: 90deg;
+}
+.navigation .nav-dropdown {
+  display: none;
+  position: absolute;
+  top: 44px;
+  background-color: rgb(250, 250, 250);
+  width: 100%;
+  box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+.navigation .nav-dropdown a {
+  color: black;
+  padding: 12px 16px;
+  font-size: 14px;
+  text-decoration: none;
+  display: block;
+}
+.navigation .nav-dropdown a:hover {
+  background-color: rgb(240, 240, 240);
+}
+
+.search-section {
+  margin: 0 15px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-box {
+  width: 100%;
+  position: relative;
+}
+.search-box form {
+  margin: 0;
+}
+
+.search-input {
+  box-sizing: border-box;
+  width: 100%;
+  background-color: white;
+  height: 32px;
+  border: 1px solid rgb(145, 145, 145);
+  border-radius: 2px;
+  outline: none;
+  background-image: url("icons/search.svg");
+  background-position: 8px 7px;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  transition: 0.3s;
+  padding-left: 32px;
+}
+.search-input:focus {
+  border: 1px solid rgb(57, 57, 57);
+  background-color: white;
+}
+.search-input:focus::-moz-placeholder {
+  opacity: 0.5;
+}
+.search-input:focus::placeholder {
+  opacity: 0.5;
+}
+.search-input::-moz-placeholder {
+  font-family: Stem, sans-serif;
+  opacity: 0.7;
+}
+.search-input::placeholder {
+  font-family: Stem, sans-serif;
+  opacity: 0.7;
+}
+
+.search-results {
+  display: none;
+  box-sizing: border-box;
+  position: absolute;
+  border: 1px solid lightgray;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
+  top: 38px;
+  width: 100%;
+}
+.search-results .result {
+  background-color: white;
+}
+.search-results .result a {
+  display: flex;
+  text-decoration: none;
+  color: black;
+  padding: 2px 6px;
+}
+.search-results .result a div {
+  margin: 4px 6px;
+  width: 5px;
+  background-color: rgb(229, 229, 229);
+}
+.search-results .result a p {
+  padding: 4px 3px;
+  line-height: 1;
+  margin: 0;
+}
+.search-results .result:hover {
+  background-color: rgb(240, 240, 240);
+}
+.search-results .result:hover a div {
+  background-color: rgb(193, 193, 193);
+}
+.search-results .more-results {
+  background-color: white;
+}
+.search-results .more-results a {
+  display: flex;
+  color: rgb(100, 100, 100);
+  padding: 2px 6px;
+}
+.search-results .more-results a div {
+  margin: 4px 6px;
+  width: 5px;
+  background-color: rgb(229, 229, 229);
+}
+.search-results .more-results a p {
+  padding: 4px 3px;
+  line-height: 1;
+  margin: 0;
+}
+.search-results .more-results:hover {
+  background-color: rgb(240, 240, 240);
+}
+.search-results .more-results:hover a {
+  text-decoration: none;
+}
+.search-results .more-results:hover a div {
+  background-color: rgb(193, 193, 193);
+}
+
+.show {
+  display: block;
+}
+
+.auth-section {
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(240, 240, 240);
+  width: 160px;
+  position: relative;
+}
+.auth-section input, .auth-section label {
+  display: none;
+}
+.auth-section .auth-username {
+  display: flex;
+  align-items: center;
+}
+.auth-section .auth-username img {
+  padding: 0 12px;
+  height: 20px;
+}
+.auth-section .auth-username p {
+  font-size: 14px;
+  margin: 0;
+  width: 100%;
+  padding: 2px 0 0 0;
+}
+.auth-section .auth-dropdown {
+  background-color: white;
+  display: none;
+  position: absolute;
+  top: 44px;
+  width: 100%;
+  font-size: 14px;
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+}
+.auth-section .auth-dropdown a {
+  color: black;
+  font-size: 14px;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.auth-section .auth-dropdown a:hover {
+  background-color: rgb(240, 240, 240);
+}
+.auth-section .auth-triangle {
+  height: 16px;
+  padding: 0 10px;
+  transition: 0.2s;
+}
+.auth-section .auth-login {
+  display: block;
+  justify-content: center;
+}
+.auth-section .auth-login a {
+  margin: 0;
+  text-decoration: none;
+  color: black;
+}
+.auth-section:hover {
+  background-color: white;
+}
+.auth-section:hover .auth-dropdown {
+  display: block;
+}
+.auth-section:hover .auth-triangle {
+  rotate: 90deg;
+}
+
+.post-list a {
+  text-decoration: none;
+}
+
+@media (min-width: 1200px) {
+  .navigation {
+    margin-right: 5%;
+  }
+  .auth-section {
+    margin-left: 10%;
+  }
+}
+@media (max-width: 992px) {
+  .logo-anchor {
+    padding: 0 10px 0 20px;
+  }
+}

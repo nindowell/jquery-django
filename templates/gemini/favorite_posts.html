@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-2">
+    <h3>My Favorite Posts</h3>
+    {% if fav_posts %}
+        <ul>
+            {% for favorited in fav_posts %}
+                <li><a href="{% url 'post_detail' favorited.post.pk %}">{{ favorited.post.title_ru }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You don't have any favorite posts yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

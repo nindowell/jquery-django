@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-2">
+    <h3>Blog Posts</h3>
+
+    <div class="post-list">
+    {% for post in posts %}
+        <h5><a href="{% url 'post_detail' post.pk %}">{{ post.title_ru }}</a></h5>
+        <p>{{ post.date_created }}</p>
+    {% endfor %}
+    </div>
+</div>
+{% endblock content %}

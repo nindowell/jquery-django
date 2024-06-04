@@ -1,0 +1,295 @@
+$bodyFont: Stem, sans-serif;
+$bodyColor: rgb(240, 240, 240);
+$headerColor: white;
+$navhoverColor: rgb(240, 240, 240);
+
+@font-face {
+    font-family: 'Stem';
+    src: url(fonts/stem-regular.woff2) format('woff2');
+}
+
+body {
+    font-family: $bodyFont;
+    margin: 0;
+    background-color: $bodyColor;
+}
+.show {
+    display: none;
+}
+.header {
+    display: flex;
+    height: 44px;
+    justify-content: center;
+    background-color: $headerColor;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    a {
+        padding: 0 30px 0 35px;
+        display: flex;
+        align-items: center;
+        &:hover {
+            .logo-leaf {
+                filter: invert(26%) sepia(99%) saturate(856%) hue-rotate(81deg) brightness(94%) contrast(106%);
+            }
+        }
+    }
+}
+.logo-leaf {
+    height: 22px;
+    transition: 0.4s;
+}
+.navigation {
+    background-color: rgb(243, 243, 243);
+    width: 164px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    .nav-icon {
+        height: 16px;
+        padding: 0 7px;
+        display: inline-block;
+    }
+    .nav-triangle {
+        height: 16px;
+        padding: 0 10px;
+        transition: 0.2s;
+    }
+    .nav-current {
+        display: flex;
+        padding-left: 8px;
+        align-items: center;
+        p {
+            font-size: 14px;
+            display: inline-block;
+            margin: 0;
+        }
+    }
+    &:hover {
+        background-color: $headerColor;
+        .nav-dropdown {
+            display: block;
+        }
+        .nav-triangle {
+            rotate: 90deg;
+        }
+    }
+    .nav-dropdown {
+        display: none;
+        position: absolute;
+        top: 44px;
+        background-color: rgb(250, 250, 250);
+        width: 100%;
+        box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.1);
+        z-index: 1;
+        a {
+            color: black;
+            padding: 12px 16px;
+            font-size: 14px;
+            text-decoration: none;
+            display: block;
+            &:hover {
+                background-color: $navhoverColor;
+            }
+        }
+    }
+}
+.search-section {
+    margin: 0 15px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.search-box {
+    width: 100%;
+    position: relative;
+    form {
+        margin: 0;
+    }
+}
+.search-input {
+    box-sizing: border-box;
+    width: 100%;
+    background-color: $headerColor;
+    height: 32px;
+    border: 1px solid rgb(145, 145, 145);
+    border-radius: 2px;
+    outline: none;
+    background-image: url('icons/search.svg');
+    background-position: 8px 7px;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    transition: 0.3s;
+    padding-left: 32px;
+    &:focus {
+        border: 1px solid rgb(57, 57, 57);
+        background-color: $headerColor;
+        &::placeholder {
+            opacity: 0.5;
+        }
+    }
+    &::placeholder{
+        font-family: $bodyFont;
+        opacity: 0.7;
+    }
+}
+.search-results {
+    display: none;
+    box-sizing: border-box;
+    position: absolute;
+    border: 1px solid lightgray;
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,.2);
+    top: 38px;
+    width: 100%;
+    .result {
+        background-color: $headerColor;
+        a {
+            display: flex;
+            text-decoration: none;
+            color: black;
+            padding: 2px 6px;
+            div {
+                margin: 4px 6px;
+                width: 5px;
+                background-color: rgb(229, 229, 229);
+            }
+            p {
+                padding: 4px 3px;
+                line-height: 1;
+                margin: 0;
+            }
+        }
+        &:hover {
+            background-color: $navhoverColor;
+            a {
+                div {
+                    background-color: rgb(193, 193, 193);
+                }
+            }
+        }
+    }
+    .more-results {
+        background-color: $headerColor;
+        a {
+            display: flex;
+            color: rgb(100, 100, 100);
+            padding: 2px 6px;
+            div {
+                margin: 4px 6px;
+                width: 5px;
+                background-color: rgb(229, 229, 229);
+            }
+            p {
+                padding: 4px 3px;
+                line-height: 1;
+                margin: 0;
+            }
+        }
+        &:hover {
+            background-color: $navhoverColor;
+            a {
+                text-decoration: none;
+                div {
+                    background-color: rgb(193, 193, 193);
+                }
+            }
+        }
+    }
+}
+.show {
+    display: block;
+}
+
+.auth-section {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $navhoverColor;
+    width: 160px;
+    position: relative;
+    input, label {
+        display: none;
+    }
+    .auth-username {
+        display: flex;
+        align-items: center;
+        img {
+            padding: 0 12px;
+            height: 20px;
+        }
+        p {
+            font-size: 14px;
+            margin: 0;
+            width: 100%;
+            padding: 2px 0 0 0;
+        }
+    }
+    .auth-dropdown {
+        background-color: $headerColor;
+        display: none;
+        position: absolute;
+        top: 44px;
+        width: 100%;
+        font-size: 14px;
+        box-shadow: 0 10px 20px 0 rgba(0,0,0,0.1);
+        a {
+            color: black;
+            font-size: 14px;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            &:hover {
+                background-color: $navhoverColor;
+            }
+        }
+    }
+    .auth-triangle {
+        height: 16px;
+        padding: 0 10px;
+        transition: 0.2s;
+    }
+    .auth-login {
+        display: block;
+        justify-content: center;
+        a {
+            margin: 0;
+            text-decoration: none;
+            color: black;
+        }
+    }
+    &:hover {
+        background-color: $headerColor;
+        .auth-dropdown {
+            display: block;
+        }
+        .auth-triangle {
+            rotate: 90deg;
+        }
+    }
+}
+
+.post-list {
+    a {
+        text-decoration: none;
+    }
+}
+
+// @media (min-width: 576px) and (max-width: 1199px) {}
+@media (min-width: 1200px) {
+    .navigation {
+        margin-right: 5%;
+    }
+    .auth-section {
+        margin-left: 10%;
+    }
+}
+
+@media (max-width: 992px) {
+    .logo-anchor {
+        padding: 0 10px 0 20px;
+    }
+}

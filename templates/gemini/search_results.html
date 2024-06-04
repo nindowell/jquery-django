@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if message %}
+        <h3>{{ message }}</h3>
+    {% endif %}
+
+    {% if results %}
+        <ul>
+            {% for result in results %}
+                <li><a href="{% url 'post_detail' result.pk %}">{{ result.title_ru }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
+{% endblock content %}

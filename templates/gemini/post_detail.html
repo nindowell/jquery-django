@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block head %}
+<style>
+    button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+    }
+    .bi-bookmark,
+    .bi-bookmark-check-fill {
+        font-size: 36px;
+    }
+</style>
+{% endblock head %}
+
+{% block content %}
+
+<div class="container mt-2">
+    <h2>{{ post.title_ru }}</h2>
+    {{ post.content|linebreaks }}
+    <p>{{ post.date_created }}</p>
+
+{% if user.is_authenticated %}
+<button id="favorite-btn">
+    {% if is_favorite %}
+        <i class="bi bi-bookmark-check-fill"></i>
+    {% else %}
+        <i class="bi bi-bookmark"></i>
+    {% endif %}
+</button>
+{% else %}
+<button id="favorite-btn">
+    <i class="bi bi-bookmark"></i>
+</button>
+<script>
+    $('#favorite-btn').click(function() {
+        showToast('You should be authorized to add Post to favorited list')
+    })
+</script>
+{% endif %}
+
+</div>
+
+<div class="toast-container position-fixed bottom-0 p-3" style="z-index: 11"></div>
+
+<script>
+    function showToast(message) {
+        const toastDiv = document.createElement('div');
+        toastDiv.classList.add('toast', 'align-items-center');
+        toastDiv.setAttribute('role', 'alert');
+        toastDiv.setAttribute('aria-live', 'assertive');
+        toastDiv.setAttribute('aria-atomic', 'true');
+        const now = new Date();
+        const formattedTime = now.toLocaleTimeString();
+
+        toastDiv.innerHTML = `
+            <div class="toast-header">
+                <strong class="me-auto">Website</strong>
+                <small>${formattedTime}</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                ${message}
+            </div>
+        `;
+
+        $('.toast-container').append(toastDiv);
+        const toast = new bootstrap.Toast(toastDiv);
+        toast.show();
+    }
+</script>
+
+{% if user.is_authenticated %}
+<script>
+    $('#favorite-btn').click(function() {
+        const $this = $(this);
+        const icon = $this.find('i');
+        const url = "{% url 'toggle_favorite' post.id %}";
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: { 'csrfmiddlewaretoken': '{{ csrf_token }}' },
+            success: function(response) {
+                if (response.is_favorite) {
+                    icon.removeClass('bi-bookmark').addClass('bi-bookmark-check-fill');
+                    showToast('Added to favorites!');
+                } else {
+                    icon.removeClass('bi-bookmark-check-fill').addClass('bi-bookmark');
+                    showToast('Removed from favorites.');
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                showToast('An error occurred. Please try again later.');
+            }
+        });
+    });
+</script>
+{% endif %}
+
+{% endblock content %}
